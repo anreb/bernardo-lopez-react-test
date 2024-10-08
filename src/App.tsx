@@ -8,6 +8,17 @@ import CreateProduct from "./pages/CreateProduct";
 import Users from "./pages/Users";
 import PrivateRoute from "./components/PrivateRoute";
 
+const LoginWrapper = () => {
+  const userData = localStorage.getItem('loginData');
+
+  // If user is already logged in, redirect to products
+  if (userData) {
+    return <Navigate to="/products" />;
+  }
+
+  return <Login />;
+};
+
 const router = createHashRouter([
   {
     path: '/',
@@ -15,7 +26,7 @@ const router = createHashRouter([
   },
   {
     path: '/login',
-    element: <Login />,
+    element: <LoginWrapper />,
   },
   {
     path: '/404',
