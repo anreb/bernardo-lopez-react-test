@@ -1,7 +1,8 @@
 import React from "react";
+import Login from "./Login";
 
 const Users: React.FC = () => {
-    return <h1>User List</h1>;
+    return <Login edit={true} />;
 };
 
 export default Users;

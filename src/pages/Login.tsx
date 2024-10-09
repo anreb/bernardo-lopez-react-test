@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const errorMessages = {
@@ -13,7 +13,7 @@ enum InputField {
     ConfirmPassword = 'confirmPassword'
 }
 
-const Login = () => {
+const Login = ({ edit }) => {
     const [loginFormData, setLoginformData] = useState({
         email: '',
         password: '',
@@ -33,6 +33,18 @@ const Login = () => {
         submitValidation.validPassword &&
         submitValidation.validPasswordMatch);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (edit) {
+            const userStr = String(localStorage.getItem('loginData'));
+            const user = JSON.parse(userStr);
+            setLoginformData({
+                email: user.email,
+                password: '',
+                confirmPassword: ''
+            })
+        }
+    }, [edit])
 
 
     const validateInput = (name: string, value: string) => {
@@ -70,22 +82,6 @@ const Login = () => {
                         : '',
             }))
         }
-        // TODO: remove after testing new validation
-        // setErrors((prevErrors) => ({
-        //     ...prevErrors,
-        //     email:
-        //         name === Email && !validateEmail(value)
-        //             ? invalidEmail
-        //             : prevErrors.email,
-        //     password:
-        //         name === Password && !validatePassword(value)
-        //             ? invalidPassword
-        //             : prevErrors.password,
-        //     confirmPassword:
-        //         name === ConfirmPassword && !validateConfirmPassword(password, value)
-        //             ? passwordsDoNotMatch
-        //             : prevErrors.confirmPassword,
-        // }));
     }
 
     const handleInputChange = (e) => {
@@ -156,10 +152,10 @@ const Login = () => {
 
     return (
         <div>
-            <h1>Login</h1>
+            <h1>{edit ? 'Edit User' : 'Login'}</h1>
             <form onSubmit={handleSubmit}>
                 <div>
-                    <label htmlFor="email">Email:</label>
+                    <label htmlFor="email">{edit ? 'Edit Email: ' : 'Email: '}</label>
                     <input
                         type="email"
                         name="email"
@@ -170,7 +166,7 @@ const Login = () => {
                     {errors.email && <p>{errors.email}</p>}
                 </div>
                 <div>
-                    <label htmlFor="password">Password:</label>
+                    <label htmlFor="password">{edit ? 'Edit Password: ' : 'Password: '}</label>
                     <input
                         name="password"
                         type="password"
@@ -181,7 +177,7 @@ const Login = () => {
                     {errors.password && <p>{errors.password}</p>}
                 </div>
                 <div>
-                    <label htmlFor="confirmPassword">Confirm Password:</label>
+                    <label htmlFor="confirmPassword">{edit ? 'Edit Confirm Password: ' : 'Confirm Password: '}</label>
                     <input
                         type="password"
                         name="confirmPassword"
@@ -191,7 +187,7 @@ const Login = () => {
                     />
                     {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                 </div>
-                <button type="submit" disabled={canSubmit}>Login</button>
+                <button type="submit" disabled={canSubmit}>{edit ? 'Edit' : 'Login'}</button>
             </form>
         </div>
     );
