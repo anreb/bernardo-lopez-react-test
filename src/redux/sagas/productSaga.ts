@@ -8,7 +8,6 @@ import { FETCH_PRODUCTS_REQUEST, } from '../types';
 import { Product } from '../../types/productTypes';
 
 const fetchProductsAPI = async (): Promise<Product[]> => {
-    console.log('fetching')
     const response = await fetch('https://fakestoreapi.com/products');
     if (!response.ok) {
         throw new Error('Network response was not ok');
