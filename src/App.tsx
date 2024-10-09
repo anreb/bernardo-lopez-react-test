@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Outlet, RouterProvider, createHashRouter } from "react-router-dom";
+import { Navigate, Outlet, RouterProvider, createHashRouter, useNavigate } from "react-router-dom";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Products from "./pages/Products";
@@ -12,10 +12,15 @@ import { Link } from 'react-router-dom';
 
 const Navigation: React.FC = () => {
   const [userData, setUserData] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    console.log('effect')
     if (JSON.parse(String(localStorage.getItem('loginData')))) {
       setUserData(true);
+    } else {
+      console.log('go to login')
+      navigate('/login');
     }
   }, [userData]);
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { call, put, takeEvery } from 'redux-saga/effects';
 import {
     fetchProductsSuccess,
@@ -38,21 +39,23 @@ const createProductAPI = async (product: Product): Promise<Product> => {
     return response.json();
 };
 
-function* fetchProducts() {
+function* fetchProducts(): Generator<any, void, any> {
     try {
         const products = yield call(fetchProductsAPI);
         yield put(fetchProductsSuccess(products));
     } catch (error) {
-        yield put(fetchProductsFailure(error.message));
+        const errMsg = (error as Error).message;
+        yield put(fetchProductsFailure(errMsg));
     }
 }
 
-function* createProduct(action: any) {
+function* createProduct(action: any): Generator<any, void, any> {
     try {
         const newProduct = yield call(createProductAPI, action.payload);
         yield put(createProductSuccess(newProduct));  // Dispatch success with new product
     } catch (error) {
-        yield put(createProductFailure(error.message));
+        const errMsg = (error as Error).message;
+        yield put(createProductFailure(errMsg));
     }
 }
 

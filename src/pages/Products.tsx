@@ -8,7 +8,7 @@ import "./Products.modules.scss"
 const Products: React.FC = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { loading, products, filteredProducts, error, currentPage, totalPages } = useSelector((state: any) => state.products);
+    const { loading, products, filteredProducts, error, currentPage } = useSelector((state: any) => state.products);
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('asc');
     const [searchTerm, setSearchTerm] = useState('');
     const pageSize = 2; // Show 2 products per page
@@ -25,7 +25,7 @@ const Products: React.FC = () => {
 
     useEffect(() => {
         if (searchTerm) {
-            const filtered = products.filter(product =>
+            const filtered = products.filter((product: { title: string; }) =>
                 product.title.toLowerCase().includes(searchTerm.toLowerCase())
             );
             dispatch({ type: 'FILTER_PRODUCTS', payload: filtered });

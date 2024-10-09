@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useOutletContext } from 'react-router-dom';
 import './Login.modules.scss'
 
@@ -14,8 +14,8 @@ enum InputField {
     ConfirmPassword = 'confirmPassword'
 }
 
-const Login = ({ edit }) => {
-    const { setUserData } = useOutletContext();
+const Login: React.FC<{ edit: boolean }> = ({ edit }) => {
+    const { setUserData } = useOutletContext<{ setUserData: React.Dispatch<React.SetStateAction<boolean>> }>();
     const [loginFormData, setLoginformData] = useState({
         email: '',
         password: '',
@@ -87,7 +87,7 @@ const Login = ({ edit }) => {
         }
     }
 
-    const handleInputChange = (e) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         validateInput(name, value);
         setLoginformData({
@@ -147,7 +147,7 @@ const Login = ({ edit }) => {
         }
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         localStorage.setItem('loginData', JSON.stringify(loginFormData));
         if (!edit) setUserData(true);

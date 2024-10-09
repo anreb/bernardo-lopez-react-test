@@ -51,7 +51,7 @@ const CreateProduct: React.FC = () => {
 
     useEffect(() => {
         if (products) {
-            const newProduct = products.find(el => el.id === 21)
+            const newProduct = products.find((el: { id: number; }) => el.id === 21)
             setNewProduct(newProduct)
         }
     }, [products])

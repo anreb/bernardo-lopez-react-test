@@ -1,6 +1,10 @@
 import { Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ element }) => {
+interface PrivateRouteProps {
+    element: React.ReactElement;
+}
+
+const PrivateRoute: React.FC<PrivateRouteProps> = ({ element }) => {
     const isAuthenticated = localStorage.getItem('loginData');
 
     return isAuthenticated ? element : <Navigate to="/login" />;

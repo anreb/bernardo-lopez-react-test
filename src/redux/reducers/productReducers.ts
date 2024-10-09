@@ -8,8 +8,6 @@ import {
     CREATE_PRODUCT_FAILURE,
     ProductState,
     ADD_PRODUCT,
-    EDIT_PRODUCT_REQUEST,
-    DELETE_PRODUCT_REQUEST,
     EDIT_PRODUCT,
     DELETE_PRODUCT
 } from '../types';
