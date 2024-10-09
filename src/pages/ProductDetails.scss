@@ -1,0 +1,48 @@
+.productContainer {
+    width: 30rem; // Set a max-width for the container
+    margin: 20px auto; // Center the container with auto margins
+    padding: 20px; // Add some padding
+    border: 1px solid #ddd; // Add a border
+    border-radius: 8px; // Rounded corners
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+    background-color: #ffffff; // Background color
+
+    .productTitle {
+        font-size: 2rem; // Larger font size for the title
+        margin-bottom: 10px; // Margin below the title
+        color: #333; // Title text color
+    }
+
+    .productDescription {
+        font-size: 1.5rem;
+        text-align: justify; // Regular font size for description
+        margin-bottom: 10px; // Margin below the description
+        color: #666; // Description text color
+        line-height: 1.5; // Line height for better readability
+    }
+
+    .productPrice {
+        font-size: 2rem; // Slightly larger font for price
+        font-weight: bold; // Bold font for emphasis
+        color: #4caf50; // Price text color (green)
+        margin-bottom: 10px; // Margin below the price
+    }
+
+    .productRating {
+        font-size: 1.8rem; // Font size for the rating
+        color: #ff9800; // Orange color for the rating
+        margin-top: 10px; // Margin above the rating
+        font-weight: bold; // Make the rating text bold
+    }
+
+
+    .productImage {
+        display: block; // Block display for the image
+        margin: 30px auto; // Center the image
+        border-radius: 8px; // Rounded corners for the image
+        width: 150px; // Set width to 150px (50% of 300px)
+        height: auto; // Maintain aspect ratio
+        border: 2px solid #4caf50; // Add a green border
+        padding: 5px; // Optional: Add padding inside the border for spacing
+    }
+}

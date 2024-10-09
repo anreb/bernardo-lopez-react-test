@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsRequest } from '../redux/actions/productActions';
 import { Product } from '../types/productTypes';
@@ -19,6 +19,10 @@ const Products: React.FC = () => {
         }
     }, [dispatch]);
 
+    const handlePaginationChange = useCallback((page: number) => {
+        dispatch({ type: 'SET_CURRENT_PAGE', payload: page });
+    }, [dispatch]);
+
     useEffect(() => {
         if (searchTerm) {
             const filtered = products.filter(product =>
@@ -29,7 +33,7 @@ const Products: React.FC = () => {
         } else {
             dispatch({ type: 'FILTER_PRODUCTS', payload: products });
         }
-    }, [searchTerm, products, dispatch]);
+    }, [searchTerm, products, dispatch, handlePaginationChange]);
 
     const handleRowClick = (product: Product) => {
         navigate(`/products/${product.id}`);
@@ -47,15 +51,8 @@ const Products: React.FC = () => {
         setSortDirection(sortDirection === 'asc' ? 'desc' : 'asc');
     };
 
-    const handlePaginationChange = (page: number) => {
-        dispatch({ type: 'SET_CURRENT_PAGE', payload: page });
-    };
-
-    // Calculate the start and end indices for the current page
     const startIndex = (currentPage - 1) * pageSize;
     const endIndex = startIndex + pageSize;
-
-    // Get the products to display on the current page
     const productsToDisplay = filteredProducts.slice(startIndex, endIndex);
 
     const renderPagination = () => {
