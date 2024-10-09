@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsRequest } from '../redux/actions/productActions';
 import { Product } from '../types/productTypes';
 import { useNavigate } from 'react-router-dom';
-import "./Products.scss"
+import "./Products.modules.scss"
 
 const Products: React.FC = () => {
     const dispatch = useDispatch();
@@ -126,6 +126,7 @@ const Products: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
+            <h3>Click on Price to filter by price</h3>
             <table className="styledTable">
                 <thead>
                     <tr className="tableHeader">

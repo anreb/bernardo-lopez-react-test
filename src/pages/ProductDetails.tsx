@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Product } from '../types/productTypes';
-import "./ProductDetails.scss"
+import "./ProductDetails.modules.scss"
 
 const ProductDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>();

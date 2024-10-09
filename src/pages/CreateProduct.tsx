@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsRequest } from '../redux/actions/productActions';
 import { Product } from '../types/productTypes'; // Assuming Product and Rating interfaces are defined here
 import { createProductRequest, editProductRequest, deleteProductRequest } from '../redux/actions/productActions'; // Replace with your actual action
+import "./CreateProduct.modules.scss";
 
 const errorMessages = {
     invalidTitle: 'Title must not be empty',
@@ -40,7 +41,7 @@ const CreateProduct: React.FC = () => {
         image: '',
     };
     const [edit, setEdit] = useState(false);
-    const { loading, products } = useSelector((state: any) => state.products);
+    const { products } = useSelector((state: any) => state.products);
 
     useEffect(() => {
         if (products.length === 0) {
@@ -108,8 +109,8 @@ const CreateProduct: React.FC = () => {
     }
 
     return (
-        <div>
-            <h2>Create Product</h2>
+        <div className="createProducContainer">
+            <h1>Create Product</h1>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label>Title:</label>
@@ -160,26 +161,40 @@ const CreateProduct: React.FC = () => {
                         required
                     />
                 </div>
-                {!product.title && <p>{errorMessages.invalidTitle}</p>}
-                {!(Number(product.price) > 0) && <p>{errorMessages.invalidPrice}</p>}
-                {!product.description && <p>{errorMessages.invalidDescription}</p>}
-                {!product.category && <p>{errorMessages.invalidCategory}</p>}
-                {!product.image && <p>{errorMessages.invalidImageUrl}</p>}
-                {!edit && <button name="create" type="submit" disabled={canSubmit}>Create Product</button>}
-                {edit && <button name="edit" type="submit" disabled={canSubmit}>Edit Product</button>}
-
+                <div className="errorContainer">
+                    <h2 className="errorTitle">{!canSubmit ? 'Can Submit' : 'Errors:'}</h2>
+                    <ul className="errorList">
+                        {!product.title && <li>{errorMessages.invalidTitle}</li>}
+                        {!(Number(product.price) > 0) && <li>{errorMessages.invalidPrice}</li>}
+                        {!product.description && <li>{errorMessages.invalidDescription}</li>}
+                        {!product.category && <li>{errorMessages.invalidCategory}</li>}
+                        {!product.image && <li>{errorMessages.invalidImageUrl}</li>}
+                    </ul>
+                </div>
+                <div className='buttonContainer'>
+                    {!edit && (
+                        <button name="create" type="submit" disabled={canSubmit}>
+                            Create Product
+                        </button>
+                    )}
+                    {edit && (
+                        <button name="edit" type="submit" disabled={canSubmit}>
+                            Edit Product
+                        </button>
+                    )}
+                </div>
             </form>
             {
                 newProduct && (
-                    <div>
-                        <h2>{newProduct.title}</h2>
-                        <img src={newProduct.image} alt={newProduct.title} width={100} />
-                        <p><strong>Price:</strong> ${newProduct.price}</p>
-                        <p><strong>Description:</strong> {newProduct.description}</p>
-                        <p><strong>Category:</strong> {newProduct.category}</p>
-                        <div>
-                            {!edit && (<button onClick={editNewProduct}>Edit</button>)}
-                            <button onClick={submitDeleteNewProduct}>Delete</button>
+                    <div className="productContainer">
+                        <h2 className="productTitle">{newProduct.title}</h2>
+                        <img className="productImage" src={newProduct.image} alt={newProduct.title} width={100} />
+                        <p className="productPrice"><strong>Price:</strong> ${newProduct.price}</p>
+                        <p className="productDescription"><strong>Description:</strong> {newProduct.description}</p>
+                        <p className="productCategory"><strong>Category:</strong> {newProduct.category}</p>
+                        <div className="buttonContainer">
+                            {!edit && (<button className="editButton" onClick={editNewProduct}>Edit</button>)}
+                            <button className="deleteButton" onClick={submitDeleteNewProduct}>Delete</button>
                         </div>
                     </div>
                 )

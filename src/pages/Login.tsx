@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Login.scss'
+import './Login.modules.scss'
 
 const errorMessages = {
     invalidEmail: 'Email is not valid',
