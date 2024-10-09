@@ -7,6 +7,7 @@ import ProductDetails from "./pages/ProductDetails";
 import CreateProduct from "./pages/CreateProduct";
 import Users from "./pages/Users";
 import PrivateRoute from "./components/PrivateRoute";
+import "./App.scss"
 
 const LoginWrapper = () => {
   const userData = localStorage.getItem('loginData');
@@ -16,7 +17,7 @@ const LoginWrapper = () => {
     return <Navigate to="/products" />;
   }
 
-  return <Login />;
+  return <Login edit={false} />;
 };
 
 const router = createHashRouter([

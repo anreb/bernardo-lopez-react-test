@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import './Login.scss'
 
 const errorMessages = {
     invalidEmail: 'Email is not valid',
@@ -38,6 +39,7 @@ const Login = ({ edit }) => {
         if (edit) {
             const userStr = String(localStorage.getItem('loginData'));
             const user = JSON.parse(userStr);
+            validateInput('email', user.email)
             setLoginformData({
                 email: user.email,
                 password: '',
@@ -151,7 +153,7 @@ const Login = ({ edit }) => {
     };
 
     return (
-        <div>
+        <div className="loginContainer">
             <h1>{edit ? 'Edit User' : 'Login'}</h1>
             <form onSubmit={handleSubmit}>
                 <div>
@@ -187,7 +189,10 @@ const Login = ({ edit }) => {
                     />
                     {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
                 </div>
-                <button type="submit" disabled={canSubmit}>{edit ? 'Edit' : 'Login'}</button>
+
+                <div className="buttonContainer">
+                    <button type="submit" disabled={canSubmit}>{edit ? 'Edit' : 'Login'}</button>
+                </div>
             </form>
         </div>
     );

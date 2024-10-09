@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchProductsRequest } from '../redux/actions/productActions';
 import { Product } from '../types/productTypes';
 import { useNavigate } from 'react-router-dom';
+import "./Products.scss"
 
 const Products: React.FC = () => {
     const dispatch = useDispatch();
@@ -120,7 +121,7 @@ const Products: React.FC = () => {
     if (error) return <div>Error: {error}</div>;
 
     return (
-        <div>
+        <div className='productsContainer'>
             <h1>Products</h1>
             <input
                 type="text"
@@ -128,25 +129,27 @@ const Products: React.FC = () => {
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <table>
+            <table className="styledTable">
                 <thead>
-                    <tr>
-                        <th onClick={() => handleSort('title')}>Title</th>
-                        <th onClick={() => handleSort('price')}>Price</th>
-                        <th onClick={() => handleSort('category')}>Category</th>
+                    <tr className="tableHeader">
+                        <th className="tableCell" onClick={() => handleSort('title')}>Title</th>
+                        <th className="tableCell" onClick={() => handleSort('price')}>Price</th>
+                        <th className="tableCell" onClick={() => handleSort('category')}>Category</th>
                     </tr>
                 </thead>
                 <tbody>
                     {productsToDisplay.map((product: Product) => (
-                        <tr key={product.id} onClick={() => handleRowClick(product)}>
-                            <td>{product.title}</td>
-                            <td>{product.price}</td>
-                            <td>{product.category}</td>
+                        <tr key={product.id} className="tableRow" onClick={() => handleRowClick(product)}>
+                            <td className="tableCell">{product.title}</td>
+                            <td className="tableCell">${product.price}</td>
+                            <td className="tableCell">{product.category}</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-            {renderPagination()}
+            <div className='paginationContainer'>
+                {renderPagination()}
+            </div>
         </div>
     );
 };

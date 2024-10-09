@@ -1,0 +1,50 @@
+// Container styles
+.productsContainer {
+    width: 28rem; // Fixed width for the container
+}
+
+// Table styles
+.styledTable {
+    font-weight: bolder;
+    width: 100%; // Set table to fill the container
+    max-width: 600px; // Set a fixed max-width for the table
+    border-collapse: collapse; // Collapse borders
+    margin: 20px 0; // Margin around the table
+    font-size: 1.5rem; // Font size
+    background-color: #f9f9f9; // Background color
+
+    // Header styles
+    .tableHeader {
+        background-color: #4caf50; // Header background color
+        color: white; // Header text color
+        text-align: left; // Align text to the left
+        cursor: pointer; // Pointer cursor on header for sorting
+    }
+
+    // Header cell styles
+    .tableCell {
+        padding: 12px; // Padding for cells
+        border: 1px solid #ddd; // Border for cells
+        vertical-align: top; // Align content to the top of the cell
+        overflow: hidden; // Hide overflow content
+        text-overflow: ellipsis; // Add ellipsis for overflowing text
+        white-space: normal; // Allow text to wrap to the next line
+    }
+
+    // Row styles
+    .tableRow {
+        &:nth-child(even) {
+            background-color: #f2f2f2; // Light background for even rows
+        }
+
+        &:hover {
+            background-color: #ddd; // Darker background on hover
+            cursor: pointer; // Pointer cursor on row hover
+        }
+    }
+}
+
+.paginationContainer {
+    display: grid;
+    place-items: center;
+}
