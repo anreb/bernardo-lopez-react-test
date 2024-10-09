@@ -1,0 +1,31 @@
+.navigationContainer {
+    position: fixed; // Fixes the navigation at the top
+    top: 0; // Aligns it to the top of the viewport
+    right: 0; // Aligns it to the right side of the viewport
+    background-color: #333; // Background color for better visibility
+    padding: 10px; // Padding around the navigation
+    width: 100%;
+}
+
+.navigationList {
+    list-style-type: none; // Removes default list styling
+    margin: 0; // Removes default margin
+    padding: 0; // Removes default padding
+    display: flex; // Aligns list items in a row
+}
+
+.navigationItem {
+    margin-left: 15px; // Adds space between navigation items
+}
+
+.navigationItem a {
+    color: white; // Text color
+    text-decoration: none; // Removes underline from links
+    padding: 5px 10px; // Padding around the link for better click area
+    border-radius: 5px; // Rounded corners for the links
+    transition: background-color 0.3s; // Smooth transition for hover effect
+
+    &:hover {
+        background-color: #575757; // Darkens the background on hover
+    }
+}

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
 import './Login.modules.scss'
 
 const errorMessages = {
@@ -15,6 +15,7 @@ enum InputField {
 }
 
 const Login = ({ edit }) => {
+    const { setUserData } = useOutletContext();
     const [loginFormData, setLoginformData] = useState({
         email: '',
         password: '',
@@ -149,6 +150,7 @@ const Login = ({ edit }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         localStorage.setItem('loginData', JSON.stringify(loginFormData));
+        if (!edit) setUserData(true);
         navigate('/products');
     };
 
