@@ -13,7 +13,9 @@ const Products: React.FC = () => {
     const pageSize = 2; // Show 2 products per page
 
     useEffect(() => {
-        dispatch(fetchProductsRequest());
+        if (products.length === 0) {
+            dispatch(fetchProductsRequest());
+        }
     }, [dispatch]);
 
     useEffect(() => {

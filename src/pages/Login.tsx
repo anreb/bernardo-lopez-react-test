@@ -35,7 +35,7 @@ const Login = () => {
     const navigate = useNavigate();
 
 
-    const validateInputs = (name: string, value: string) => {
+    const validateInput = (name: string, value: string) => {
         const {
             invalidEmail,
             invalidPassword,
@@ -43,26 +43,54 @@ const Login = () => {
         } = errorMessages;
         const { password } = loginFormData
         const { Email, Password, ConfirmPassword } = InputField;
-        setErrors((prevErrors) => ({
-            ...prevErrors,
-            email:
-                name === Email && !validateEmail(value)
-                    ? invalidEmail
-                    : '',
-            password:
-                name === Password && !validatePassword(value)
-                    ? invalidPassword
-                    : '',
-            confirmPassword:
-                name === ConfirmPassword && !validateConfirmPassword(password, value)
-                    ? passwordsDoNotMatch
-                    : '',
-        }));
+        if (name === Email) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                email:
+                    !validateEmail(value)
+                        ? invalidEmail
+                        : '',
+            }))
+        }
+        if (name === Password) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                password:
+                    !validatePassword(value)
+                        ? invalidPassword
+                        : '',
+            }))
+        }
+        if (name === ConfirmPassword) {
+            setErrors((prevErrors) => ({
+                ...prevErrors,
+                confirmPassword:
+                    !validateConfirmPassword(password, value)
+                        ? passwordsDoNotMatch
+                        : '',
+            }))
+        }
+        // TODO: remove after testing new validation
+        // setErrors((prevErrors) => ({
+        //     ...prevErrors,
+        //     email:
+        //         name === Email && !validateEmail(value)
+        //             ? invalidEmail
+        //             : prevErrors.email,
+        //     password:
+        //         name === Password && !validatePassword(value)
+        //             ? invalidPassword
+        //             : prevErrors.password,
+        //     confirmPassword:
+        //         name === ConfirmPassword && !validateConfirmPassword(password, value)
+        //             ? passwordsDoNotMatch
+        //             : prevErrors.confirmPassword,
+        // }));
     }
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        validateInputs(name, value);
+        validateInput(name, value);
         setLoginformData({
             ...loginFormData,
             [name]: value
@@ -122,7 +150,6 @@ const Login = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('submit', loginFormData)
         localStorage.setItem('loginData', JSON.stringify(loginFormData));
         navigate('/products');
     };

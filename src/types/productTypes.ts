@@ -1,14 +1,14 @@
 export interface Rating {
-    rate: number;
-    count: number;
+    rate: number | string;
+    count: number | string;
 }
 
 export interface Product {
-    id: number;
+    id?: number | undefined;
     title: string;
-    price: number;
+    price: number | string;
     description: string;
     category: string;
     image: string;
-    rating: Rating;
+    rating?: Rating;
 }
