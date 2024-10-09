@@ -1,50 +1,38 @@
-# React + TypeScript + Vite
+# React + TypeScript + Vite + Redux + ReduxSaga + Sass
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+## Running the Project
+To run your React application in development mode, use the following command:
+```bash
+npm run dev
 ```
+This will start the Vite development server and enable Hot Module Replacement (HMR) for a smooth development experience.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+## Building the Project
+To build your application for production, run:
+```bash
+npm run build
 ```
+This command will create an optimized build of your application in the dist directory.
+
+## Previewing the Build
+After building, you can preview the production build by running:
+
+```bash
+npm run preview
+```
+This will serve the files in the dist directory, allowing you to see how your application will behave in a production environment.
+
+## My React Application on Netlify
+
+I have deployed my React + TypeScript + Vite application on Netlify. You can view it at the following link:
+
+### Login Credentials
+
+To log in, use the following credentials:
+
+- **Email**: example@gmail.com
+- **Password**: Pass123!
+- **Confirm Password**: Pass123!
+
+[View My Application](https://chic-snickerdoodle-b15292.netlify.app/)
